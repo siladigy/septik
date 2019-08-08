@@ -65,3 +65,19 @@ popupDiscount.addEventListener('click', (event) => {
         popupDiscount.style.display = "none";
     }
 });
+
+//questions
+
+const panelHeading = document.querySelectorAll('.panel-heading'),
+      panelCollapse = document.querySelectorAll('.panel-collapse');
+
+for (let i = 0; i<panelHeading.length; i++){
+    panelHeading[i].addEventListener('click', (event) => {
+        panelCollapse.forEach((elem) => {
+            elem.classList.remove('in');
+        });
+        panelCollapse[i].classList.add('in');
+    });
+}
+    
+
