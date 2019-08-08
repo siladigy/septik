@@ -34,8 +34,7 @@ popupCheck.addEventListener('click', (event) => {
 
 //sentence
 
-const  sentence = document.querySelector('.sentence'),
-       addSentence = document.querySelector('.add-sentence-btn'),
+const  addSentence = document.querySelector('.add-sentence-btn'),
        sentenceBlock = document.querySelectorAll('.sentence-block');
 
 addSentence.addEventListener('click', () => {
@@ -46,4 +45,23 @@ addSentence.addEventListener('click', () => {
             addSentence.style.display = "none";
         
     });
+});
+
+//popup-discount
+
+const popupDiscount = document.querySelector('.popup-discount'),
+      discountBtn = document.querySelectorAll('.discount-btn');
+
+discountBtn.forEach((elem) => {
+    elem.addEventListener('click', () => {
+        popupDiscount.style.display = "block";
+    });
+});
+
+popupDiscount.addEventListener('click', (event) => {
+    let target = event.target;
+
+    if(target.classList.contains('popup-close') || target.classList.contains('popup')){
+        popupDiscount.style.display = "none";
+    }
 });
