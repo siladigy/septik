@@ -152,29 +152,31 @@ const constructor = document.querySelector('.constructor'),
           
           const submitForm = () => {
             form.forEach((elem) => {
-            elem.addEventListener('submit', (event) => {
-                event.preventDefault();
-            elem.appendChild(statusMessage);
-                statusMessage.textContent = loadMessage;
-                const formData = new FormData(elem);
-                let body = {};
-          
-                for (let val of formData.entries()){
-                  body[val[0]] = val[1];
-                }
-                postData(body)
-                  .then((response) => {
-                    if(response.status !== 200) {
-                      throw new Error('status network not 200');
-                    }
-                    statusMessage.textContent = successMessage;
-                    elem.reset();
-                })
-                  .catch((error) => {
-                    statusMessage.textContent = errorMessage;
-                    console.log(error);
+              if(!elem.classList.contains('consultation-form') && !elem.classList.contains('discount-form')){
+                elem.addEventListener('submit', (event) => {
+                  event.preventDefault();
+              elem.appendChild(statusMessage);
+                  statusMessage.textContent = loadMessage;
+                  const formData = new FormData(elem);
+                  let body = {};
+            
+                  for (let val of formData.entries()){
+                    body[val[0]] = val[1];
+                  }
+                  postData(body)
+                    .then((response) => {
+                      if(response.status !== 200) {
+                        throw new Error('status network not 200');
+                      }
+                      statusMessage.textContent = successMessage;
+                      elem.reset();
+                  })
+                    .catch((error) => {
+                      statusMessage.textContent = errorMessage;
+                      console.log(error);
+                  });
                 });
-              });
+              }
         });
         };
       
@@ -273,7 +275,7 @@ const constructor = document.querySelector('.constructor'),
     })();
 
 
-    
+
 //calculator
 
 (() => {
@@ -399,3 +401,5 @@ const constructor = document.querySelector('.constructor'),
       };
       sendForm();
   })();
+
+
